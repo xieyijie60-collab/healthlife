@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SDG 3 Website</title>
+<style>
+body {
+font-family: "PingFang TC", "Microsoft JhengHei", Arial, sans-serif;
+text-align: center;
+margin: 0;
+background-color: #f9f9f9;
+}
+/* 導覽列 */
+.nav {
+background-color: #333;
+padding: 10px;
+position: sticky;
+top: 0;
+z-index: 1000;
+}
+.nav button {
+color: white;
+background: none;
+border: none;
+padding: 10px 15px;
+cursor: pointer;
+transition: 0.3s;
+font-size: 16px;
+}
+.nav button:hover {
+background-color: rgba(255, 255, 255, 0.3);
+border-radius: 10px;
+}
+/* 內容區 */
+.content {
+display: none;
+padding: 40px;
+opacity: 0;
+transition: opacity 0.5s ease-in-out;
+max-width: 1000px;
+margin: 0 auto;
+}
+.active {
+display: block;
+opacity: 1;
+}
+/* --- 新增：睡眠卡片樣式 --- */
+.sleep-grid {
+display: flex;
+justify-content: center;
+gap: 15px;
+flex-wrap: wrap;
+margin: 30px 0;
+}
+.sleep-info-card {
+background: white;
+border-radius: 15px;
+padding: 15px;
+width: 150px;
+box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+border-top: 5px solid #333;
+transition: transform 0.3s;
+}
+.sleep-info-card:hover {
+transform: translateY(-5px);
+}
+.sleep-info-card.infant { border-color: #4b0082; }
+.sleep-info-card.toddler { border-color: #4b6cb7; }
+.sleep-info-card.teen { border-color: #6a11cb; }
+.sleep-info-card.adult { border-color: #4facfe; }
+.sleep-info-card h4 { margin: 5px 0; color: #555; }
+.sleep-info-card .time-val {
+font-size: 24px;
+font-weight: bold;
+display: block;
+color: #333;
+margin: 5px 0;
+}
+.sleep-info-card .unit { font-size: 12px; color: #999; }
+/* 滑桿美化 */
+#slider {
+width: 80%;
+max-width: 400px;
+margin: 20px 0;
+}
+#emoji { font-size: 60px; margin: 10px 0; }
+
+/*新增飲食卡牌*/
+/* --- 新增：飲食區塊樣式 --- */
+.diet-grid {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.diet-card {
+  background: white;
+  border-radius: 12px;
+  padding: 10px;
+  width: 100px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  border: 2px solid transparent;
+  transition: 0.3s;
+}
+
+.diet-card:hover { transform: scale(1.05); }
+.diet-card.selected { border-color: #27ae60; background-color: #f0fff4; }
+
+.diet-card h5 { margin: 5px 0; font-size: 14px; }
+.diet-card span { font-size: 30px; }
+
+#diet-result {
+  margin-top: 20px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 15px;
+  min-height: 80px;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+}
+.mental-health-box {
+    padding: 30px;
+    background: #eef2f3;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+.breathing-circle {
+    width: 100px;
+    height: 100px;
+    background: #a1c4fd;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    animation: breathe 4s infinite ease-in-out; /* 呼吸動畫 */
+}
+
+@keyframes breathe {
+    0%, 100% { transform: scale(1); background: #a1c4fd; }
+    50% { transform: scale(1.4); background: #c2e9fb; }
+}
+</style>
+</head>
+<body>
+<div class="nav">
+<button onclick="showSection('intro')">Introduction</button>
+<button onclick="showSection('facts')">Health Facts</button>
+<button onclick="showSection('problems')">Problems</button>
+<button onclick="showSection('quiz')">Quiz</button>
+</div>
+<!-- introduction區塊開始 -->
+<div id="intro" class="content active">
+<h2>Introduction</h2>
+<p>This is SDG 3: Good Health and Well-Being.</p>
+</div>
+<!-- introduction區塊結束 -->
+
+<!-- health facts區塊開始 -->
+<div id="facts" class="content">
+<h2 style="font-size:30px">Sleep Health</h2>
+<p>足夠的睡眠使人思慮清晰、反應靈敏及注意力集中，當人們疲倦時則無法發揮最佳狀態。</p>
+<div class="sleep-grid">
+<div class="sleep-info-card infant">
+<h4>👶 嬰兒</h4>
+<span class="time-val">16</span>
+<span class="unit">小時 / 天</span>
+</div>
+<div class="sleep-info-card toddler">
+<h4>👦 幼兒</h4>
+<span class="time-val">10</span>
+<span class="unit">小時 / 天</span>
+</div>
+<div class="sleep-info-card teen">
+<h4>🧑‍🎓 青少年</h4>
+<span class="time-val">9+</span>
+<span class="unit">小時 / 天</span>
+</div>
+<div class="sleep-info-card adult">
+<h4>👔 成人</h4>
+<span class="time-val">7-8</span>
+<span class="unit">小時 / 天</span>
+</div>
+</div>
+<hr style="border: 0.5px solid #eee; margin: 40px 0;">
+<h3>測測你的睡眠狀態</h3>
+<p>Sleep Hours: <span id="hours" style="font-weight:bold; color:#2575fc;">7</span></p>
+<input type="range" min="0" max="12" value="7" id="slider" oninput="updateSleep()">
+<h1 id="emoji">😊</h1>
+<p id="message" style="font-weight: bold;">Healthy sleep</p>
+
+<hr style="border: 0.5px solid #eee; margin: 40px 0;">
+
+<h1 style="font-size:30px">Eat Health</h1>
+<h3>均衡飲食組合</h3>
+<p>點擊下方類別，看看它們為身體提供的關鍵營養：</p>
+
+<div class="diet-grid">
+    <div class="diet-card" onclick="updateDiet('veg', this)">
+        <span>🥦</span>
+        <h5>蔬菜類</h5>
+    </div>
+    <div class="diet-card" onclick="updateDiet('pro', this)">
+        <span>🍗</span>
+        <h5>蛋白質</h5>
+    </div>
+    <div class="diet-card" onclick="updateDiet('grain', this)">
+        <span>🍚</span>
+        <h5>全穀雜糧</h5>
+    </div>
+    <div class="diet-card" onclick="updateDiet('fruit', this)">
+        <span>🍎</span>
+        <h5>水果類</h5>
+    </div>
+</div>
+
+<div id="diet-result">
+    <p style="color: #888;">請選擇一個類別查看詳情...</p>
+</div>
+<hr style="border: 0.5px solid #eee; margin: 40px 0;">
+<h1 style="font-size:30px">Mental Health</h1>
+<p>研究顯示，每天花 5 分鐘練習深呼吸能有效降低皮質醇（壓力荷爾蒙）。</p>
+
+<div class="mental-health-box">
+    <div class="breathing-circle">
+        <span>吐氣...</span>
+    </div>
+    <p><i>「心理健康與身體健康同樣重要。」 — SDG 3 核心理念</i></p>
+</div>
+</div>
+<!-- health facts區塊結束 -->
+
+<!-- problem區塊開始 -->
+<div id="problems" class="content">
+<h2>Problems & Solutions</h2>
+<p>Stress → Take breaks and exercise.</p>
+</div>
+<!-- problem區塊結束 -->
+
+<!-- quiz區塊開始 -->
+<div id="quiz" class="content">
+<h2>Health Quiz</h2>
+<p>Coming soon!</p>
+</div>
+<!-- quiz區塊結束 -->
+
+<script>
+function showSection(sectionId) {
+let sections = document.querySelectorAll('.content');
+sections.forEach(sec => sec.classList.remove('active'));
+document.getElementById(sectionId).classList.add('active');
+}
+function updateSleep() {
+let hours = document.getElementById("slider").value;
+document.getElementById("hours").innerText = hours;
+let emoji = document.getElementById("emoji");
+let message = document.getElementById("message");
+if (hours <= 4) {
+emoji.innerText = "😵";
+message.innerText = "Very unhealthy";
+message.style.color = "#e74c3c";
+}
+else if (hours <= 6) {
+emoji.innerText = "😐";
+message.innerText = "Not enough sleep";
+message.style.color = "#f39c12";
+}
+else if (hours <= 9) {
+emoji.innerText = "😊";
+message.innerText = "Healthy sleep";
+message.style.color = "#2ecc71";
+}
+else {
+emoji.innerText = "😴";
+message.innerText = "Too much sleep";
+message.style.color = "#3498db";
+}
+}
+function updateDiet(type, element) {
+  // 移除所有卡片的選中狀態
+  document.querySelectorAll('.diet-card').forEach(card => card.classList.remove('selected'));
+  // 加上當前選中狀態
+  element.classList.add('selected');
+
+  let resultArea = document.getElementById("diet-result");
+  let content = "";
+
+  // 根據類別給予對應的營養描述
+  if (type === 'veg') {
+    content = "<strong>🥗 維生素與纖維：</strong> 含有豐富維生素A、C及礦物質，能幫助消化並增強免疫力。建議佔餐盤的 1/2。";
+  } else if (type === 'pro') {
+    content = "<strong>💪 肌肉修復：</strong> 提供必需胺基酸，支持肌肉生長與組織修復。建議選擇豆、魚、蛋、肉類。";
+  } else if (type === 'grain') {
+    content = "<strong>⚡ 能量來源：</strong> 提供豐富澱粉與維生素B群，是大腦與身體運動的主要能量來源。";
+  } else if (type === 'fruit') {
+    content = "<strong>🍎 抗氧化：</strong> 含有天然酵素與植化素，能延緩老化並保護心血管健康。";
+  }
+
+  resultArea.innerHTML = `<p style="color: #2c3e50; line-height: 1.6;">${content}</p>`;
+}
+</script>
+</body>
+</html>
