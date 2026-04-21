@@ -43,6 +43,108 @@ margin: 0 auto;
 display: block;
 opacity: 1;
 }
+
+
+
+
+
+
+
+
+/* 心電圖線動畫 */
+/* 全螢幕開場 */
+#intro-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+
+
+
+
+
+
+
+/* SVG 大小 */
+#intro-animation svg {
+  width: 60%;
+  max-width: 600px;
+  display: block;
+}
+
+
+
+
+
+
+
+
+/* 心電圖線 */
+.ecg-line {
+  fill: none;
+  stroke: #00ffcc;
+  stroke-width: 3;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw 2s linear forwards;
+}
+
+
+
+
+
+
+
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+  
+/* ❤️ */
+.ecg-heart {
+  font-size: 55px;
+  fill: #00ffcc;
+  animation: beat 0.5s infinite;
+}
+
+
+
+@keyframes beat {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+.waiting-text {
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+    margin-top: 20px;
+    letter-spacing: 4px;
+    animation: blink 1.5s infinite;
+  }
+
+
+
+
+  /* 閃爍動畫 */
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+/* --- 心電圖動畫結束 --- */
+
+
+
 /* --- 新增：睡眠卡片樣式 --- */
 .sleep-grid {
 display: flex;
@@ -84,6 +186,8 @@ margin: 20px 0;
 }
 #emoji { font-size: 60px; margin: 10px 0; }
 
+
+
 /*新增飲食卡牌*/
 /* --- 新增：飲食區塊樣式 --- */
 .diet-grid {
@@ -105,11 +209,12 @@ margin: 20px 0;
   transition: 0.3s;
 }
 
+
 .diet-card:hover { transform: scale(1.05); }
 .diet-card.selected { border-color: #27ae60; background-color: #f0fff4; }
-
 .diet-card h5 { margin: 5px 0; font-size: 14px; }
 .diet-card span { font-size: 30px; }
+
 
 #diet-result {
   margin-top: 20px;
@@ -119,12 +224,66 @@ margin: 20px 0;
   min-height: 80px;
   box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
 }
+
+
+
+
+/* mental health開始 */
 .mental-health-box {
     padding: 30px;
     background: #eef2f3;
     border-radius: 20px;
     margin-top: 20px;
 }
+
+
+
+
+/* 精神健康區塊 */
+.spirit-container {
+    max-width: 700px;
+    margin: 40px auto;
+    text-align: left;
+}
+
+.step-card {
+    position: relative;
+    background: white;
+    margin-bottom: 15px;
+    padding: 15px 25px;
+    border-left: 5px solid #a1c4fd;
+    border-radius: 0 15px 15px 0;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.05);
+    transition: 0.3s;
+}
+
+.step-card:hover {
+    transform: translateX(10px);
+    background: #f0f7ff;
+}
+
+.step-card h4 {
+    margin: 0 0 5px 0;
+    color: #4b6cb7;
+}
+
+.step-card p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+}
+
+.step-num {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 40px;
+    font-weight: bold;
+    color: rgba(161, 196, 253, 0.2);
+}
+
 
 .breathing-circle {
     width: 100px;
@@ -140,13 +299,184 @@ margin: 20px 0;
     animation: breathe 4s infinite ease-in-out; /* 呼吸動畫 */
 }
 
+
 @keyframes breathe {
     0%, 100% { transform: scale(1); background: #a1c4fd; }
     50% { transform: scale(1.4); background: #c2e9fb; }
 }
+/* mental health 結束*/
+
+
+
+
+/* problem */
+/* --- 便條紙容器 --- */
+.memo-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  padding: 20px;
+}
+
+
+
+
+.memo-card {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  background-color: #fff; /* 底色 (Solution 的背景) */
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  overflow: hidden; /* 隱藏滑出的部分 */
+  cursor: pointer;
+}
+
+
+
+
+/* --- 下層：Solution (一開始就定位好) --- */
+.solution-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 25px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0fff4; /* 淡淡的綠色，代表解答 */
+  color: #27ae60;
+  z-index: 1;
+}
+
+
+
+
+/* --- 上層：Problem (像便條紙一樣蓋在上面) --- */
+.problem-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 25px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff9c4; /* 便條紙黃色 */
+  color: #333;
+  z-index: 2; /* 蓋在 Solution 上面 */
+  transition: transform 0.6s ease-in-out, opacity 0.4s ease-in-out; /* 滑動與淡出動畫 */
+  
+  /* 便條紙裝飾：右上角小摺角 */
+  border-bottom-right-radius: 20px; 
+}
+
+
+
+
+/* 便條紙陰影裝飾 */
+.problem-layer::after {
+    content: '';
+    position: absolute;
+    right: 0; bottom: 0;
+    width: 0; height: 0;
+    border-style: solid;
+    border-width: 0 0 20px 20px;
+    border-color: transparent transparent #fbc02d transparent; /* 摺角深色 */
+    border-radius: 0 0 10px 0;
+}
+
+
+
+
+
+
+
+
+/* --- 點擊後的狀態 (.active 由 JS 控制) --- */
+.memo-card.active .problem-layer {
+  transform: translateY(-100%); /* 向上滑出整個卡片高度 */
+  opacity: 0; /* 同時變透明 */
+}
+
+
+
+
+/* 裝飾：箭頭與文字 */
+.problem-layer h3, .solution-layer h3 { margin: 0 0 10px 0; }
+.click-hint {
+  position: absolute;
+  bottom: 10px;
+  font-size: 12px;
+  color: #999;
+}
+/* problem */
 </style>
 </head>
+
+
 <body>
+<!-- ❤️ 心電圖動畫 -->
+<!-- 開場動畫 -->
+<div id="intro-animation">
+  <svg viewBox="0 0 600 100">
+
+
+    <!-- 路徑 -->
+    <defs>
+      <path id="ecgPath"
+        d="M0 50
+           L50 50 
+           L70 20 
+           L90 80 
+           L110 50 
+           L200 50 
+           L220 30 
+           L240 70 
+           L260 50 
+           L500 50" />
+    </defs>
+
+
+    <!-- 線 -->
+    <use href="#ecgPath" class="ecg-line" />
+
+
+
+    <!-- ❤️ -->
+    <text
+      class="ecg-heart"
+      text-anchor="middle"
+      dominant-baseline="middle"
+      dy="6">
+
+
+
+
+      ❤️
+
+
+
+      <animateMotion
+        dur="2s"
+        fill="freeze"
+        rotate="0">
+
+        <mpath href="#ecgPath" />
+      </animateMotion>
+    </text>
+  </svg>
+  <div class="waiting-text">Waiting...</div>
+</div>
+<!-- 心電圖結束 -->
+
+
+
 <div class="nav">
 <button onclick="showSection('intro')">Introduction</button>
 <button onclick="showSection('facts')">Health Facts</button>
@@ -159,6 +489,7 @@ margin: 20px 0;
 <p>This is SDG 3: Good Health and Well-Being.</p>
 </div>
 <!-- introduction區塊結束 -->
+
 
 <!-- health facts區塊開始 -->
 <div id="facts" class="content">
@@ -186,7 +517,7 @@ margin: 20px 0;
 <span class="unit">小時 / 天</span>
 </div>
 </div>
-<hr style="border: 0.5px solid #eee; margin: 40px 0;">
+
 <h3>測測你的睡眠狀態</h3>
 <p>Sleep Hours: <span id="hours" style="font-weight:bold; color:#2575fc;">7</span></p>
 <input type="range" min="0" max="12" value="7" id="slider" oninput="updateSleep()">
@@ -194,6 +525,7 @@ margin: 20px 0;
 <p id="message" style="font-weight: bold;">Healthy sleep</p>
 
 <hr style="border: 0.5px solid #eee; margin: 40px 0;">
+
 
 <h1 style="font-size:30px">Eat Health</h1>
 <h3>均衡飲食組合</h3>
@@ -223,23 +555,141 @@ margin: 20px 0;
 </div>
 <hr style="border: 0.5px solid #eee; margin: 40px 0;">
 <h1 style="font-size:30px">Mental Health</h1>
-<p>研究顯示，每天花 5 分鐘練習深呼吸能有效降低皮質醇（壓力荷爾蒙）。</p>
+<div class="spirit-container">
+    <h3 style="text-align:center;">優築生命：精神健康建設工程</h3>
+    
+    <div class="step-card">
+        <h4>1. 保養頭腦</h4>
+        <p>維持腦力在最佳狀態，是所有心理健康的基石。</p>
+        <span class="step-num">01</span>
+    </div>
+
+
+
+
+    <div class="step-card" style="border-left-color: #96e6a1;">
+        <h4>2. 免除煩惱</h4>
+        <p>學習心理調適，主動過濾並化解令人煩惱的情境。</p>
+        <span class="step-num">02</span>
+    </div>
+
+
+
+
+    <div class="step-card" style="border-left-color: #fed06e;">
+        <h4>3. 豐富自我</h4>
+        <p>從經驗中學習，讓每次歷練都成為滋養腦力的養分。</p>
+        <span class="step-num">03</span>
+    </div>
+
+
+
+
+    <div class="step-card" style="border-left-color: #ff9a9e;">
+        <h4>4. 善用壓力</h4>
+        <p>將生活中的酸甜苦辣轉化為處世的圓融與智慧。</p>
+        <span class="step-num">04</span>
+    </div>
+
+
+
+
+    <div class="step-card" style="border-left-color: #a18cd1;">
+        <h4>5. 堆積幸福</h4>
+        <p>用心生活並關懷土地與他人，提升生命中幸福的品質。</p>
+        <span class="step-num">05</span>
+    </div>
+
+    <div class="step-card" style="background: linear-gradient(to right, #ffffff, #eef2f3); border-left: 8px solid #4b6cb7;">
+        <h4>總結：優築生命</h4>
+        <p>這是一場生命建設工程，由內而外擴建心靈豪宅，提昇精神健康。</p>
+        <span class="step-num">🏠</span>
+    </div>
+</div>
+<p>現在，就從一次深呼吸開始你的第一步。</p>
+
 
 <div class="mental-health-box">
     <div class="breathing-circle">
         <span>吐氣...</span>
     </div>
-    <p><i>「心理健康與身體健康同樣重要。」 — SDG 3 核心理念</i></p>
+    <p><i>研究顯示，每天花 5 分鐘練習深呼吸能有效降低皮質醇（壓力荷爾蒙）。</i></p>
 </div>
 </div>
 <!-- health facts區塊結束 -->
 
+
 <!-- problem區塊開始 -->
 <div id="problems" class="content">
-<h2>Problems & Solutions</h2>
-<p>Stress → Take breaks and exercise.</p>
+  <h2>常見健康挑戰與對策</h2>
+  <p>點擊便條紙，翻開解決方案</p>
+
+  <div class="memo-container">
+    
+    <div class="memo-card" onclick="this.classList.toggle('active')">
+      <div class="solution-layer">
+        <h3>💡 解決方案</h3>
+        <p>嘗試 4-7-8 呼吸法：吸氣 4 秒、憋氣 7 秒、吐氣 8 秒，並適度運動。</p>
+      </div>
+      <div class="problem-layer">
+        <h3 style="color:#e74c3c;">😫 壓力過大</h3>
+        <p>覺得焦慮、心跳加速、無法專注？</p>
+        <span class="click-hint">📄 點擊翻頁</span>
+      </div>
+    </div>
+
+    <div class="memo-card" onclick="this.classList.toggle('active')">
+      <div class="solution-layer">
+        <h3>💡 解決方案</h3>
+        <p>遵循 20-20-20 原則：每 20 分鐘看 20 英呎遠的地方 20 秒。</p>
+      </div>
+      <div class="problem-layer">
+        <h3 style="color:#f39c12;">👀 眼睛乾澀</h3>
+        <p>長時間盯著螢幕，眼睛感到痠痛？</p>
+        <span class="click-hint">📄 點擊翻頁</span>
+      </div>
+    </div>
+    
+    <div class="memo-card" onclick="this.classList.toggle('active')">
+      <div class="solution-layer">
+        <h3>💡 解決方案</h3>
+        <p>捨棄電梯改爬樓梯，或將水杯換成小容量，強迫自己頻繁起身倒水。</p>
+      </div>
+      <div class="problem-layer">
+        <h3 style="color:#f39c12;">🪑 久坐不動</h3>
+        <p>代謝變慢、腰圍增加，甚至影響心血管健康</p>
+        <span class="click-hint">📄 點擊翻頁</span>
+      </div>
+    </div>
+    
+    <div class="memo-card" onclick="this.classList.toggle('active')">
+      <div class="solution-layer">
+        <h3>💡 解決方案</h3>
+        <p>睡前一小時「數位宵禁」： 關閉電子產品，改看紙本書或冥想。</p>
+      </div>
+      <div class="problem-layer">
+        <h3 style="color:#f39c12;">🌙 睡眠品質不佳</h3>
+        <p>壓力與藍光讓你大腦無法進入深度睡眠？</p>
+        <span class="click-hint">📄 點擊翻頁</span>
+      </div>
+    </div>
+    
+    <div class="memo-card" onclick="this.classList.toggle('active')">
+      <div class="solution-layer">
+        <h3>💡 解決方案</h3>
+        <p> 定時飲水法： 設定鬧鐘，每天喝水量至少為 體重(kg)x30 ml。</p>
+      </div>
+      <div class="problem-layer">
+        <h3 style="color:#f39c12;">💧 隱形缺水</h3>
+        <p>忙到忘記喝水？這會讓你注意力渙散、皮膚暗沈。</p>
+        <span class="click-hint">📄 點擊翻頁</span>
+      </div>
+    </div>
+  </div>
 </div>
 <!-- problem區塊結束 -->
+
+
 
 <!-- quiz區塊開始 -->
 <div id="quiz" class="content">
@@ -247,6 +697,7 @@ margin: 20px 0;
 <p>Coming soon!</p>
 </div>
 <!-- quiz區塊結束 -->
+
 
 <script>
 function showSection(sectionId) {
@@ -286,8 +737,11 @@ function updateDiet(type, element) {
   // 加上當前選中狀態
   element.classList.add('selected');
 
+
   let resultArea = document.getElementById("diet-result");
   let content = "";
+
+
 
   // 根據類別給予對應的營養描述
   if (type === 'veg') {
@@ -302,6 +756,20 @@ function updateDiet(type, element) {
 
   resultArea.innerHTML = `<p style="color: #2c3e50; line-height: 1.6;">${content}</p>`;
 }
+window.onload = function() {
+  setTimeout(function() {
+    document.getElementById("intro-animation").style.display = "none";
+  }, 2300); // 動畫時間
+};
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
