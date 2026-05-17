@@ -59,7 +59,7 @@ body::after {
 
 /* 導覽列 */
 .nav {
-background-color: #333;
+background-color: #136529;
 padding: 10px;
 position: sticky;
 top: 0;
@@ -346,7 +346,7 @@ opacity: 1;
 }
 /*---introduction---*/
 
-
+/* health fact 開始*/
 /* --- 新增：睡眠卡片樣式 --- */
 .sleep-grid {
 display: flex;
@@ -429,6 +429,111 @@ margin: 20px 0;
   border-radius: 15px;
   min-height: 80px;
   box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+}
+.unhealthy-section {
+    margin-top: 30px;
+    padding: 15px; /* 縮小內距 */
+    background: #fff5f5; 
+    border: 2px solid #fee2e2; /* 加上淺紅邊框，定義範圍 */
+    border-radius: 20px;
+    box-sizing: border-box; /* 確保 padding 不會撐大外框 */
+    width: 100%; /* 寬度跟隨父容器 */
+    overflow: hidden; /* 確保內容不溢出 */
+}
+
+.warning-title {
+    color: #e53e3e;
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.flip-container {
+    display: flex;
+    justify-content: center;
+    gap: 12px; /* 縮小卡片間距 */
+    flex-wrap: wrap; /* 超過寬度自動換行 */
+    width: 100%;
+}
+
+/* 翻轉卡片 - 縮小尺寸 */
+.flip-card {
+    background-color: transparent;
+    width: 150px;  /* 從 200 縮小到 150 */
+    height: 190px; /* 從 250 縮小到 190 */
+    perspective: 1000px;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 12px; /* 圓角也縮小一點比較協調 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box; /* 關鍵：確保內距不撐大卡片 */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* 正面 */
+.flip-card-front {
+    background-color: white;
+    color: #333;
+    border: 1px solid #fee2e2;
+}
+
+.flip-card-front .icon {
+    font-size: 2.5rem; /* 圖示縮小 */
+    margin-bottom: 5px;
+}
+
+.flip-card-front h4 {
+    font-size: 1rem;
+    margin: 5px 0;
+}
+
+/* 背面 */
+.flip-card-back {
+    background-color: #e53e3e;
+    color: white;
+    transform: rotateY(180deg);
+}
+
+.flip-card-back p {
+    font-size: 0.9rem;
+    margin: 5px 0;
+}
+
+.exercise-tip {
+    background: rgba(255,255,255,0.2);
+    padding: 3px 8px;
+    border-radius: 15px;
+    font-size: 0.8rem; /* 提示字縮小 */
+    margin: 5px 0;
+}
+
+.flip-card-back small {
+    font-size: 0.7rem;
+    opacity: 0.9;
+    line-height: 1.2;
 }
 
 
@@ -527,7 +632,121 @@ margin: 20px 0;
     50% { transform: scale(1.4); background: #c2e9fb; }
 }
 /* mental health 結束*/
+.exercise-section {
+    background: #f0f7ff; /* 淺藍色背景，象徵活力 */
+    padding: 25px;
+    border-radius: 20px;
+    margin-top: 30px;
+    border: 1px solid #d0e7ff;
+}
 
+.exercise-intro {
+    text-align: center;
+    max-width: 600px;   /* 限制寬度讓長句子好閱讀 */
+    margin: 0 auto 20px auto;
+}
+
+.exercise-intro h3 {
+    color: #0056b3;
+    margin-bottom: 8px;
+}
+
+.exercise-intro p {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* Tabs 控制器 */
+.tabs-header {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    padding: 10px 15px;
+    border: none;
+    background: #fff;
+    color: #007bff;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.tab-btn.active {
+    background: #007bff;
+    color: white;
+}
+
+/* 內容顯示 */
+.tab-content {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.ex-item {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: center; /* 如果你想讓圖示和文字整組在卡片內靠中 */
+    
+}
+
+.ex-icon {
+    font-size: 2rem;
+}
+
+.ex-item strong {
+    display: block;
+    color: #333;
+    margin-bottom: 3px;
+}
+
+.ex-item p {
+    font-size: 0.85rem;
+    color: #666;
+    margin: 0;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* 設定所有要慢慢浮現的區塊 */
+.sleep-grid, 
+.diet-grid, 
+.unhealthy-section, 
+.spirit-container, 
+.exercise-section,
+.sleep-info-card {
+    opacity: 0;                /* 初始透明 */
+    transform: translateY(30px); /* 初始位置下移 30px */
+    transition: all 0.8s ease-out; /* 動作持續 0.8 秒 */
+}
+
+/* 當加上 .appear 這個類別時，會回到原位並顯現 */
+.appear {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+/* 讓第二張以後的卡片慢一點出現 */
+.sleep-info-card:nth-child(2) { transition-delay: 0.1s; }
+.sleep-info-card:nth-child(3) { transition-delay: 0.2s; }
+.sleep-info-card:nth-child(4) { transition-delay: 0.3s; }
+/*health fact結束*/
 
 
 
@@ -732,7 +951,198 @@ margin: 20px 0;
     max-height: 200px;
 }
 .faq-item.open .arrow { transform: rotate(180deg); }
+/* --- 新的 3D 浮出特效 --- */
+.carousel-wrapper, .deep-dive-box, .faq-section {
+    opacity: 0;
+    /* 初始狀態：縮小、旋轉、下移 */
+    transform: translateY(50px) scale(0.9) rotateX(-15deg);
+    transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); /* 帶有彈性的效果 */
+    perspective: 1000px; /* 增加空間感 */
+}
+
+/* 啟動狀態 */
+.reveal-active {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) rotateX(0deg) !important;
+}
+
+/* 針對深層解析區塊做一點特別處理：從左側滑入 */
+.deep-dive-box {
+    transform: translateX(-50px) opacity(0);
+}
+.deep-dive-box.reveal-active {
+    transform: translateX(0) opacity(1) !important;
+}
 /* problem */
+
+/*check*/
+/* 分區區塊 */
+.check-section {
+    background: white;
+    padding: 18px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.check-section h3 {
+    margin-top: 0;
+    font-size: 1.1rem;
+    color: #007bff;
+    margin-bottom: 15px;
+}
+
+/* 讓框框跟文字完美對齊 */
+.checkbox-group label {
+    display: flex;
+    align-items: center; /* 垂直置中 */
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #444;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 12px; /* 框框與文字的間距 */
+    cursor: pointer;
+}
+
+/* 輸入框排版 */
+.input-group {
+    display: flex;
+    gap: 10px;
+}
+
+.input-group input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* 按鈕樣式 */
+.submit-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 50px;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    background: #0056b3;
+    transform: scale(1.02);
+}
+
+/* 結果區塊 */
+.result-box {
+    margin-top: 25px;
+    padding: 25px;
+    background: linear-gradient(135deg, #007bff, #00c6ff);
+    color: white;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
+}
+/* 新增重新檢測按鈕樣式 */
+.reset-btn {
+    background: white;
+    color: #666;
+    border: 1px solid #ddd;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.reset-btn:hover {
+    background: #f8f9fa;
+    color: #333;
+}
+/*check*/
+
+/*quiz*/
+/* 電池外殼 */
+.battery-wrapper {
+    width: 80px;
+    height: 150px;
+    margin: 0 auto 20px;
+    position: relative;
+}
+.battery-head {
+    width: 30px;
+    height: 10px;
+    background: #333;
+    margin: 0 auto;
+    border-radius: 4px 4px 0 0;
+}
+.battery-body {
+    width: 80px;
+    height: 140px;
+    border: 4px solid #333;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden; /* 確保能量條不會超出邊框 */
+    background: #eee;
+}
+
+/* 能量填充條 */
+.energy-fill {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 0%; /* 初始高度為 0 */
+    background: #ff4d4d; /* 初始紅色 */
+    transition: height 0.8s cubic-bezier(0.4, 0, 0.2, 1), background 0.5s;
+}
+
+.energy-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bold;
+    font-family: Arial;
+    z-index: 1;
+}
+
+/* 題目卡片樣式 */
+.q-card {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 15px;
+    animation: fadeIn 0.5s;
+}
+
+.q-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.q-options button {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.q-options button:hover { background: #eef2f3; }
+.correct-opt { background: #27ae60 !important; color: white; border-color: #27ae60 !important; }
+.wrong-opt { background: #e74c3c !important; color: white; border-color: #e74c3c !important; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+/*quiz*/
 </style>
 </head>
 
@@ -822,7 +1232,7 @@ margin: 20px 0;
 
     <!-- 4. 介紹文字：去官方化，增加感性連結 -->
     <div style="text-align: left; max-width: 700px; margin: 0 auto; line-height: 1.8; color: #444;">
-        <p>在忙碌的現代節奏中，相信健康不應只是醫院裡的數據，而是你每一次的呼吸、每一口選擇的食物與每一晚的深層睡眠。我們致力於將抽象的健康目標，轉化為日常生活中觸手可及的微小實踐。</p>
+        <p>在忙碌的現代節奏中，健康不應只是醫院裡的數據，而是你每一次的呼吸、每一口選擇的食物與每一晚的深層睡眠。我們致力於將抽象的健康目標，轉化為日常生活中觸手可及的微小實踐。</p>
         
         <!-- 重點特色區 -->
         <div style="background: rgba(39, 174, 96, 0.05); padding: 25px; border-radius: 20px; border-left: 5px solid #27ae60; margin: 25px 0;">
@@ -864,7 +1274,7 @@ margin: 20px 0;
 
 <!-- health facts區塊開始 -->
 <div id="facts" class="content">
-<h2 style="font-size:30px">Sleep Health</h2>
+<h2 style="font-size:30px">睡眠健康</h2>
 <p>足夠的睡眠使人思慮清晰、反應靈敏及注意力集中，當人們疲倦時則無法發揮最佳狀態。</p>
 <div class="sleep-grid">
 <div class="sleep-info-card infant">
@@ -895,7 +1305,7 @@ margin: 20px 0;
 <h1 id="emoji">😊</h1>
 <p id="message" style="font-weight: bold;">Healthy sleep</p>
 <hr style="border: 0.5px solid #eee; margin: 40px 0;">
-<h1 style="font-size:30px">Eat Health</h1>
+<h1 style="font-size:30px">飲食健康</h1>
 <h3>均衡飲食組合</h3>
 <p>點擊下方類別，看看它們為身體提供的關鍵營養：</p>
 <div class="diet-grid">
@@ -920,8 +1330,57 @@ margin: 20px 0;
 <div id="diet-result">
     <p style="color: #888;">請選擇一個類別查看詳情...</p>
 </div>
+<div class="unhealthy-section">
+    <h3 class="warning-title">⚠️ 警惕：隱藏的熱量陷阱</h3>
+    <div class="flip-container">
+        <!-- 卡片 1 -->
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <div class="icon">🍗</div>
+                    <h4>油炸食物</h4>
+                </div>
+                <div class="flip-card-back">
+                    <p>一塊炸雞熱量約 450-600 大卡</p>
+                    <div class="exercise-tip">🏃 需要健走 1.5 小時</div>
+                    <small>含大量飽和脂肪，易引發身體發炎。</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- 卡片 2 -->
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <div class="icon">🥤</div>
+                    <h4>含糖手搖飲</h4>
+                </div>
+                <div class="flip-card-back">
+                    <p>一杯珍奶熱量約 650 大卡</p>
+                    <div class="exercise-tip">🚴 需要騎車 3 小時</div>
+                    <small>空熱量且血糖波動大，脂肪極易堆積。</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- 卡片 3 -->
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <div class="icon">🍰</div>
+                    <h4>精緻甜點</h4>
+                </div>
+                <div class="flip-card-back">
+                    <p>一片蛋糕熱量約 350 大卡</p>
+                    <div class="exercise-tip">🤸 需要健康操 1 小時</div>
+                    <small>高糖高脂肪，會加速皮膚老化與疲勞。</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <hr style="border: 0.5px solid #eee; margin: 40px 0;">
-<h1 style="font-size:30px">Mental Health</h1>
+<h1 style="font-size:30px">精神健康</h1>
 <div class="spirit-container">
     <h3 style="text-align:center;">優築生命：精神健康建設工程</h3>
     
@@ -967,6 +1426,76 @@ margin: 20px 0;
         <span>吐氣...</span>
     </div>
     <p><i>研究顯示，每天花 5 分鐘練習深呼吸能有效降低皮質醇（壓力荷爾蒙）。</i></p>
+</div>
+<hr style="border: 0.5px solid #eee; margin: 40px 0;">
+<h1 style="font-size:30px">運動健康</h1>
+<div class="exercise-section">
+    <!-- 前言區塊 -->
+    <div class="exercise-intro">
+        <h3>🚶 運動其實很簡單</h3>
+        <p>你可從自己有興趣的項目開始，或從最簡易、不受時間限制的健走開始，慢慢增加時間，再加強強度及次數。</p>
+    </div>
+
+    <!-- 方案二：情境切換標籤 -->
+    <div class="tabs-container">
+        <div class="tabs-header">
+            <button class="tab-btn active" onclick="openTab(event, 'commute')">🚌 通勤中</button>
+            <button class="tab-btn" onclick="openTab(event, 'work')">🏫 辦公/學校</button>
+            <button class="tab-btn" onclick="openTab(event, 'home')">🏠 居家休閒</button>
+        </div>
+
+        <!-- 標籤內容 -->
+        <div id="commute" class="tab-content active">
+            <div class="ex-item">
+                <span class="ex-icon">👟</span>
+                <div>
+                    <strong>提早一站下車</strong>
+                    <p>步行至目的地，讓精神更飽滿。走路 30 分鐘可消耗約 100 大卡！</p>
+                </div>
+            </div>
+            <div class="ex-item">
+                <span class="ex-icon">🪜</span>
+                <div>
+                    <strong>走樓梯取代電梯</strong>
+                    <p>節省能源並增加活動量。先走幾層樓再搭電梯，循序漸進增加運動量。</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="work" class="tab-content">
+            <div class="ex-item">
+                <span class="ex-icon">🤸</span>
+                <div>
+                    <strong>定時健康操</strong>
+                    <p>上午 10:30、下午 3:30 各做 15 分鐘，累積 30 分鐘也能消耗 100 大卡。</p>
+                </div>
+            </div>
+            <div class="ex-item">
+                <span class="ex-icon">🤝</span>
+                <div>
+                    <strong>起身動一動</strong>
+                    <p>利用倒水或影印時間多走動，減少久坐時間，維持血液循環。</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="home" class="tab-content">
+            <div class="ex-item">
+                <span class="ex-icon">🍼</span>
+                <div>
+                    <strong>自製小啞鈴</strong>
+                    <p>利用空的寶特瓶裝水或沙子訓練肌力，並依進度增加份量提升強度。</p>
+                </div>
+            </div>
+            <div class="ex-item">
+                <span class="ex-icon">🚴</span>
+                <div>
+                    <strong>家庭互動運動</strong>
+                    <p>與家人相約騎腳踏車（30 分鐘耗 100 大卡）或帶著寵物快走，增進感情更健康。</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </div>
 <!-- health facts區塊結束 -->
@@ -1085,11 +1614,118 @@ margin: 20px 0;
 </div>
 <!-- problem區塊結束 -->
 
+<!-- check區塊開始 -->
+<div id="check" class="content">
+    <h2 style="text-align: center;">📊 全方位健康數位評估</h2>
+    
+    <!-- Step 1: 身體基礎 -->
+    <div class="check-section">
+        <h3>Step 1: 身體基礎數值</h3>
+        <div class="input-group">
+            <input type="number" id="height" placeholder="身高 (cm)">
+            <input type="number" id="weight" placeholder="體重 (kg)">
+        </div>
+    </div>
+
+    <!-- Step 2: 飲食紀錄 -->
+    <div class="check-section">
+        <h3>Step 2: 飲食紀錄</h3>
+        <div class="checkbox-group">
+            <label><input type="checkbox" name="health" value="10"><span>🥗 攝取 3 份以上蔬菜</span></label>
+            <label><input type="checkbox" name="health" value="10"><span>🍎 攝取 2 份以上水果</span></label>
+            <label><input type="checkbox" name="health" value="-15"><span>🍗 吃油炸、高油食物</span></label>
+            <label><input type="checkbox" name="health" value="-10"><span>🍰 吃甜點、精緻澱粉</span></label>
+        </div>
+    </div>
+
+    <!-- Step 3: 水分補給 -->
+    <div class="check-section">
+        <h3>Step 3: 水分補給</h3>
+        <div class="checkbox-group">
+            <label><input type="checkbox" name="health" value="10"><span>💧 飲水超過 2000ml</span></label>
+            <label><input type="checkbox" name="health" value="5"><span>🍵 以無糖茶取代含糖飲</span></label>
+            <label><input type="checkbox" name="health" value="-10"><span>🥤 喝了 1 杯含糖手搖飲</span></label>
+            <label><input type="checkbox" name="health" value="-5"><span>☕ 攝取過量咖啡因</span></label>
+        </div>
+    </div>
+
+    <!-- Step 4: 睡眠與作息 -->
+    <div class="check-section">
+        <h3>Step 4: 睡眠與作息</h3>
+        <div class="checkbox-group">
+            <label><input type="checkbox" name="health" value="15"><span>🛌 睡眠充足 (7-9 小時)</span></label>
+            <label><input type="checkbox" name="health" value="5"><span>📵 睡前一小時不看螢幕</span></label>
+            <label><input type="checkbox" name="health" value="-10"><span>🌙 熬夜 (超過凌晨 1 點)</span></label>
+            <label><input type="checkbox" name="health" value="-5"><span>😫 醒來後仍感到疲憊</span></label>
+        </div>
+    </div>
+
+    <!-- Step 5: 運動與活動 -->
+    <div class="check-section">
+        <h3>Step 5: 運動與活動</h3>
+        <div class="checkbox-group">
+            <label><input type="checkbox" name="health" value="15"><span>🏃 有氧運動 30 分鐘以上 </span></label>
+            <label><input type="checkbox" name="health" value="10"><span>💪 進行重量/核心訓練 </span></label>
+            <label><input type="checkbox" name="health" value="5"><span>🚶 今日步行超過 8000 步 </span></label>
+            <label><input type="checkbox" name="health" value="-10"><span>🪑 連續久坐超過 4 小時 </span></label>
+        </div>
+    </div>
+
+    <!-- Step 6: 心理與壓力 -->
+    <div class="check-section">
+        <h3>Step 6: 心理與壓力</h3>
+        <div class="checkbox-group">
+            <label><input type="checkbox" name="health" value="10"><span>🧘 完成冥想或放鬆練習 </span></label>
+            <label><input type="checkbox" name="health" value="10"><span>😊 今日心情大部分時間愉悅 </span></label>
+            <label><input type="checkbox" name="health" value="-15"><span>🌪️ 過度焦慮或壓力巨大 </span></label>
+            <label><input type="checkbox" name="health" value="-10"><span>🧠 感到情緒低落或提不起勁 </span></label>
+        </div>
+    </div>
+
+    <!-- 單一功能按鈕 -->
+    <div style="text-align: center; margin-top: 20px;">
+        <button id="action-btn" class="submit-btn" onclick="handleBtnClick()">查看檢測分數</button>
+    </div>
+
+    <!-- 結果顯示區 (只留這一個) -->
+    <div id="result-area" class="result-box" style="display: none;">
+        <div id="bmi-display" style="font-size: 1.1rem; margin-bottom: 10px;"></div>
+        <div class="score-display">最終健康指數：<span id="final-score">0</span> / 180</div>
+        <p id="advice-text" style="margin-top: 15px;"></p>
+    </div>
+</div>
+<!-- check區塊結束 -->
 
 <!-- quiz區塊開始 -->
 <div id="quiz" class="content">
-<h2>Health Quiz</h2>
-<p>Coming soon!</p>
+
+    <h1 style="text-align:center; font-size:30px;">⚡ 健康能量補充站</h1>
+    
+    <!-- 電池組件 -->
+    <div class="battery-wrapper">
+        <div class="battery-head"></div>
+        <div class="battery-body">
+            <div id="energy-fill" class="energy-fill"></div>
+            <div id="energy-text" class="energy-text">0%</div>
+        </div>
+    </div>
+
+    <!-- 題目區域 -->
+    <div id="question-container">
+        <!-- 題目會由 JS 自動產生，或手動列出如下 -->
+        <div class="q-card" id="q-box">
+            <p id="q-text" style="font-weight:bold; font-size:18px;"></p>
+            <div id="q-options" class="q-options"></div>
+        </div>
+
+        <!-- 結束畫面 -->
+        <div id="quiz-result" style="display:none; text-align:center; background:#fff; padding:20px; border-radius:15px;">
+            <h2 id="result-title">🔋 能量充填完成！</h2>
+            <p id="result-desc"></p>
+            <button onclick="resetQuiz()" class="reset-btn" style="margin-top:15px; padding:10px 20px; border-radius:20px; cursor:pointer;">重新挑戰</button>
+        </div>
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </div>
 <!-- quiz區塊結束 -->
 
@@ -1200,6 +1836,43 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 //introduction
 
+//facts
+function openTab(evt, tabName) {
+    // 隱藏所有 tab-content
+    const contents = document.getElementsByClassName("tab-content");
+    for (let i = 0; i < contents.length; i++) {
+        contents[i].classList.remove("active");
+    }
+
+    // 取消所有按鈕的 active 樣式
+    const buttons = document.getElementsByClassName("tab-btn");
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove("active");
+    }
+
+    // 顯示當前選中的內容，並加上 active 樣式到按鈕
+    document.getElementById(tabName).classList.add("active");
+    evt.currentTarget.classList.add("active");
+}
+// 建立偵測器
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        // 如果元素進入視窗範圍
+        if (entry.isIntersecting) {
+            entry.target.classList.add('appear');
+        }
+    });
+}, {
+    threshold: 0.1 // 元素露出 10% 就算觸發
+});
+
+// 選擇所有要動態出現的區塊並開始監測
+document.addEventListener("DOMContentLoaded", function() {
+    const hiddenElements = document.querySelectorAll('.sleep-grid, .diet-grid, .unhealthy-section, .spirit-container, .exercise-section, .sleep-info-card');
+    hiddenElements.forEach((el) => observer.observe(el));
+});
+//facts
+
 //probelm
 let currentIndex = 0;
 const slider = document.getElementById('memoSlider');
@@ -1276,7 +1949,272 @@ function updateDeepDive() {
 function toggleFAQ(element) {
     element.parentElement.classList.toggle('open');
 }
+const scrollObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+            // 增加一點延遲，讓它們一個接一個浮現
+            setTimeout(() => {
+                entry.target.classList.add('reveal-active');
+            }, index * 150); 
+        }
+    });
+}, { threshold: 0.1 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    // 選擇所有的主要大區塊
+    const targets = document.querySelectorAll('.carousel-wrapper, .deep-dive-box, .faq-section');
+    targets.forEach(t => scrollObserver.observe(t));
+});
 //problem
+
+//check
+let isResultShown = false;
+
+function handleBtnClick() {
+    const btn = document.getElementById('action-btn');
+
+    if (!isResultShown) {
+        const hInput = document.getElementById('height').value;
+        const wInput = document.getElementById('weight').value;
+
+        if (hInput > 0 && wInput > 0) {
+            showFinalResult(); 
+            btn.innerText = "重新檢測";
+            btn.style.background = "#6c757d"; // 變灰色
+            isResultShown = true;
+        } else {
+            alert("請輸入完整身高體重，讓我們計算基礎分數。");
+        }
+    } else {
+        resetCheck(); 
+        btn.innerText = "查看檢測分數";
+        btn.style.background = "#007bff"; // 變回藍色
+        isResultShown = false;
+    }
+}
+
+function showFinalResult() {
+    let score = 100;
+    const h = document.getElementById('height').value / 100;
+    const w = document.getElementById('weight').value;
+    const resultArea = document.getElementById('result-area');
+    
+    // BMI 計算
+    let bmi = (w / (h * h)).toFixed(1);
+    if (bmi < 18.5 || (bmi >= 24 && bmi < 27)) {
+        score -= 10;
+    } else if (bmi >= 27) {
+        score -= 20;
+    }
+    document.getElementById('bmi-display').innerText = `您的 BMI 為：${bmi}`;
+
+    // 計算勾選分數
+    const checkboxes = document.querySelectorAll('input[name="health"]:checked');
+    checkboxes.forEach(box => {
+        score += parseInt(box.value);
+    });
+
+    // 顯示結果
+    resultArea.style.display = 'block';
+    document.getElementById('final-score').innerText = score;
+
+    // 評語判定
+    const adviceText = document.getElementById('advice-text');
+    if (score >= 150) {
+        adviceText.innerText = "🌟 卓越！你是身心健康的超級模範生！";
+    } else if (score >= 110) {
+        adviceText.innerText = "👍 良好！你有很棒的生活意識，繼續保持。";
+    } else if (score >= 80) {
+        adviceText.innerText = "⚠️ 尚可。生活壓力或作息可能稍不平衡。";
+    } else {
+        adviceText.innerText = "🚨 警訊！目前身心狀態亮紅燈，請務必多休息。";
+    }
+    
+    resultArea.scrollIntoView({ behavior: 'smooth' });
+}
+
+function resetCheck() {
+    // 清空輸入框
+    document.getElementById('height').value = "";
+    document.getElementById('weight').value = "";
+    // 取消勾選
+    document.querySelectorAll('input[name="health"]').forEach(box => box.checked = false);
+    // 隱藏結果
+    document.getElementById('result-area').style.display = 'none';
+    // 滾回檢測區頂部
+    document.getElementById('check').scrollIntoView({ behavior: 'smooth' });
+}
+//check
+
+//quiz
+const bigDatabase = [
+
+{ q: "長時間看螢幕應遵守 20-20-20 原則，看遠方要持續多久？", a: ["5 秒", "20 秒", "1 分鐘"], correct: 1 },
+{ q: "珍珠奶茶一杯熱量約 650 大卡，需要騎車多久才能消耗？", a: ["30 分鐘", "1 小時", "3 小時"], correct: 2 },
+{ q: "「4-7-8 呼吸法」的主要目的是什麼？", a: ["鍛鍊肌肉", "放鬆減壓", "增加食慾"], correct: 1 },
+{ q: "成年人每天建議的睡眠時間為多少小時？", a: ["5-6 小時", "7-8 小時", "10 小時以上"], correct: 1 },
+{ q: "哪種運動走路 30 分鐘大約可以消耗 100 大卡？", a: ["快走/健走", "慢速散步", "原地踏步"], correct: 0 },
+{ q: "精神健康建設工程中，哪一項是所有心理健康的基石？", a: ["豐富自我", "免除煩惱", "保養頭腦"], correct: 2 },
+{ q: "自製小啞鈴可以用什麼生活用品代替？", a: ["空的寶特瓶裝水", "衛生紙捲", "遙控器"], correct: 0 },
+{ q: "哪種食物屬於精緻甜點，易加速皮膚老化？", a: ["全穀饅頭", "一片蛋糕", "無糖優格"], correct: 1 },
+{ q: "『提早一站下車步行』最適合在哪個情境執行？", a: ["居家休閒", "通勤途中", "辦公室內"], correct: 1 },
+{ q: "深呼吸練習建議每天花多少時間就能有效降低壓力？", a: ["1 分鐘", "5 分鐘", "1 小時"], correct: 1 },
+{ q: "下列哪種睡眠對象每天需要約 16 小時的睡眠？", a: ["嬰兒", "青少年", "成人"], correct: 0 },
+{ q: "為了精神健康，我們應該將壓力轉化為什麼？", a: ["憤怒", "智慧", "憂鬱"], correct: 1 },
+{ q: "關於「運動健康」，下列哪種做法最能有效減少久坐時間？", a: ["連續坐著 4 小時再大動一次", "利用倒水或影印時間起身走動", "下班後直接躺在沙發休息"], correct: 1 },
+{ q: "一塊炸雞的熱量約 450-600 大卡，建議用什麼方式消耗？", a: ["健走 1.5 小時", "睡覺 8 小時", "看電視 2 小時"], correct: 0 },
+{ q: "在「精神健康」中，學習心理調適、主動過濾煩惱屬於哪一步？", a: ["豐富自我", "免除煩惱", "堆積幸福"], correct: 1 },
+{ q: "想要訓練肌力但沒有啞鈴時，可以利用什麼自製器材？", a: ["空的寶特瓶裝水或沙子", "報紙捲", "雨傘"], correct: 0 },
+{ q: "下列哪一項是「優築生命」工程的最終目標？", a: ["賺很多錢", "蓋真正的豪宅", "由內而外提升精神健康"], correct: 2 }
+
+];
+
+let questions = [];
+let currentIdx = 0;
+let score = 0;
+
+function loadQuestion() {
+    if (currentIdx < questions.length) {
+        const qData = questions[currentIdx];
+        // 顯示 Q1 ~ Q10
+        document.getElementById('q-text').innerText = `Q${currentIdx + 1}: ${qData.q}`;
+        
+        const optionsDiv = document.getElementById('q-options');
+        optionsDiv.innerHTML = ''; 
+
+        qData.a.forEach((opt, index) => {
+            const btn = document.createElement('button');
+            btn.innerText = opt;
+            btn.onclick = () => handleAnswer(index, btn);
+            optionsDiv.appendChild(btn);
+        });
+    } else {
+        showResult();
+    }
+}
+
+function handleAnswer(choice, btn) {
+    const correct = questions[currentIdx].correct;
+    const allBtns = document.querySelectorAll('#q-options button');
+    allBtns.forEach(b => b.disabled = true);
+
+    if (choice === correct) {
+        btn.style.background = "#27ae60";
+        btn.style.color = "white";
+        score++;
+        updateBattery();
+    } else {
+        btn.style.background = "#e74c3c";
+        btn.style.color = "white";
+    }
+
+    setTimeout(() => {
+        currentIdx++;
+        loadQuestion();
+    }, 800);
+}
+
+function updateBattery() {
+    const fill = document.getElementById('energy-fill');
+    const text = document.getElementById('energy-text');
+    // 答對一題加 10%
+    const percentage = (score / questions.length) * 100;
+    
+    fill.style.height = percentage + '%';
+    text.innerText = Math.round(percentage) + '%';
+
+    if (percentage <= 30) fill.style.background = '#ff4d4d';
+    else if (percentage <= 70) fill.style.background = '#ffa500';
+    else fill.style.background = '#2ecc71';
+}
+
+function showResult() {
+    document.getElementById('q-box').style.display = 'none';
+    const result = document.getElementById('quiz-result');
+    result.style.display = 'block';
+    
+    // 計算百分比
+    const finalScorePercentage = Math.round((score / questions.length) * 100);
+    document.getElementById('result-desc').innerText = `您的健康能量充填達到了 ${finalScorePercentage}%！`;
+    
+    const resultTitle = document.getElementById('result-title');
+
+    // --- 100% 滿分特殊判定 ---
+    if (score === questions.length) {
+        resultTitle.innerText = "🌟 完美達成！健康大師！";
+        resultTitle.style.color = "#f1c40f"; // 標題變金色
+        triggerPerfectEffect(); // 觸發噴發特效
+    } else if (score >= 8) {
+        resultTitle.innerText = "🔋 超級健康大師！";
+        resultTitle.style.color = "#2ecc71";
+    } else if (score >= 5) {
+        resultTitle.innerText = "⚡ 能量尚可，繼續加油！";
+        resultTitle.style.color = "#333";
+    } else {
+        resultTitle.innerText = "⚠️ 能量不足，快去複習 Health Facts！";
+        resultTitle.style.color = "#e74c3c";
+    }
+}
+function triggerPerfectEffect() {
+    const duration = 3 * 1000; // 持續 3 秒
+    const animationEnd = Date.now() + duration;
+    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+    function randomInRange(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+
+    const interval = setInterval(function() {
+        const timeLeft = animationEnd - Date.now();
+
+        if (timeLeft <= 0) {
+            return clearInterval(interval);
+        }
+
+        const particleCount = 50 * (timeLeft / duration);
+        // 左右兩邊交替噴發
+        confetti(Object.assign({}, defaults, { 
+            particleCount, 
+            origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } 
+        }));
+        confetti(Object.assign({}, defaults, { 
+            particleCount, 
+            origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } 
+        }));
+    }, 250);
+}
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+function resetQuiz() {
+    initGame(); 
+    updateBattery(); 
+    document.getElementById('q-box').style.display = 'block';
+    document.getElementById('quiz-result').style.display = 'none';
+    document.getElementById('result-title').style.color = "#333"; // 恢復原本顏色
+    loadQuestion();
+}
+function initGame() {
+    // 1. 將題庫深拷貝並打亂
+    const shuffledDb = shuffle([...bigDatabase]);
+    
+    // 2. 取出前 10 題作為本局題目
+    questions = shuffledDb.slice(0, 10);
+    
+    // 3. 重設進度與分數
+    currentIdx = 0;
+    score = 0;
+}
+
+
+// 初始載入
+initGame();// 先洗牌
+loadQuestion();   
+//quiz
 </script>
 </body>
 </html>
