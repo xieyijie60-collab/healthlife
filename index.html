@@ -3,6 +3,301 @@
 <head>
 <title>Health Life</title>
 <style>
+    /*黑暗模式*/
+/* ==========================================
+   深色模式 - 完整版
+   ========================================== */
+
+/* 切換按鈕 */
+#dark-mode-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: #136529;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 9998;
+  transition: background 0.3s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#dark-mode-btn:hover {
+  transform: scale(1.1);
+  background: #0d4a1f;
+}
+body.dark-mode #dark-mode-btn {
+  background: #2d5a3d;
+}
+
+/* 全域背景與基本文字 */
+body.dark-mode {
+  background-image: linear-gradient(135deg, #1a2e1a 0%, #0d1a0d 50%, #1a2a0d 100%);
+  color: #e0e0e0;
+}
+
+/* 導覽列 */
+body.dark-mode .nav {
+  background-color: #0d3d1f;
+}
+
+/* 全域文字白色（灰色字統一覆蓋） */
+body.dark-mode p,
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode li,
+body.dark-mode span,
+body.dark-mode label {
+  color: #e0e0e0;
+}
+
+/* ── 首頁 ── */
+/* 「優築你的理想生活」副標題 */
+body.dark-mode #intro p {
+  color: #e0e0e0 !important;
+}
+/* 特色清單內的說明文字 */
+body.dark-mode #intro ul li,
+body.dark-mode #intro ul li strong {
+  color: #e0e0e0 !important;
+}
+/* 綠色標語保留綠色不動 */
+body.dark-mode #intro p[style*="color: #27ae60"],
+body.dark-mode #intro strong[style*="color: #27ae60"] {
+  color: #7deba0 !important;
+}
+
+/* ── Facts：睡眠卡片 ── */
+body.dark-mode .sleep-info-card {
+  background: #1e2e1e;
+  border-top-color: #444;
+}
+body.dark-mode .sleep-info-card h4,
+body.dark-mode .sleep-info-card .time-val,
+body.dark-mode .sleep-info-card .unit {
+  color: #ffffff !important;
+}
+
+/* ── Facts：飲食卡片 ── */
+body.dark-mode .diet-card {
+  background: #1e2e1e;
+  border-color: #2d4a2d;
+  color: #e0e0e0;
+}
+body.dark-mode .diet-card h5 {
+  color: #e0e0e0 !important;
+}
+body.dark-mode #diet-result {
+  background: #1e2e1e;
+  color: #e0e0e0;
+}
+/* 飲食詳細資訊文字（點擊後顯示的說明） */
+body.dark-mode #diet-result p,
+body.dark-mode #diet-result strong {
+  color: #ffffff !important;
+}
+
+/* ── Facts：警惕翻轉卡 ── */
+body.dark-mode .unhealthy-section {
+  background: #2e1a1a;
+  border-color: #4a2222;
+}
+body.dark-mode .flip-card-front {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  border-color: #4a2222;
+}
+body.dark-mode .flip-card-front h4,
+body.dark-mode .flip-card-front .icon {
+  color: #e0e0e0 !important;
+}
+
+/* ── Facts：精神健康步驟卡片（優築生命） ── */
+body.dark-mode .step-card {
+  background: #1e2e1e !important;
+  color: #e0e0e0;
+}
+body.dark-mode .step-card h4 {
+  color: #7deba0 !important;
+}
+body.dark-mode .step-card p {
+  color: #e0e0e0 !important;
+}
+body.dark-mode .step-num {
+  color: rgba(200, 230, 200, 0.15);
+}
+
+/* ── Facts：呼吸動畫區（吐氣文字改黑，讓它在淺藍圓圈上可讀） ── */
+body.dark-mode .mental-health-box {
+  background: #1e2e1e;
+}
+body.dark-mode .breathing-circle span {
+  color: #000000 !important;
+}
+
+/* ── Facts：運動健康 ── */
+body.dark-mode .exercise-section {
+  background: #1a2a3a;
+  border-color: #1e3a5a;
+}
+body.dark-mode .tab-btn {
+  background: #1e2e1e;
+  color: #7deba0;
+}
+body.dark-mode .tab-btn.active {
+  background: #007bff;
+  color: #ffffff;
+}
+body.dark-mode .ex-item {
+  background: #1e2e1e;
+}
+/* 運動項目標題（e.g. 提早一站下車）改白色 */
+body.dark-mode .ex-item strong {
+  color: #ffffff !important;
+}
+body.dark-mode .ex-item p {
+  color: #e0e0e0 !important;
+}
+
+/* ── Problem：便條紙 ── */
+body.dark-mode .memo-card .problem-layer {
+  background-color: #3a3010;
+  color: #f0e0a0;
+}
+body.dark-mode .memo-card .solution-layer {
+  background-color: #0d2e1a;
+  color: #7deba0;
+}
+
+/* ── Problem：專家深度解析 ── */
+body.dark-mode .deep-dive-box {
+  background: rgba(20, 36, 20, 0.95);
+}
+body.dark-mode .deep-dive-body,
+body.dark-mode .deep-dive-body p,
+body.dark-mode .deep-dive-body strong {
+  color: #ffffff !important;
+}
+body.dark-mode .deep-dive-header h3 {
+  color: #7deba0 !important;
+}
+
+/* ── Problem：FAQ ── */
+body.dark-mode .faq-item {
+  background: #1e2e1e;
+}
+body.dark-mode .faq-question {
+  background: #162616;
+  color: #e0e0e0;
+}
+body.dark-mode .faq-answer {
+  background: #1e2e1e;
+  color: #e0e0e0 !important;
+}
+
+/* ── Problem：呼吸計時器 ── */
+body.dark-mode .breath-widget {
+  background: #1e2e1e;
+}
+/* 倒數計時文字改白色 */
+body.dark-mode #breath-timer {
+  color: #ffffff !important;
+}
+body.dark-mode #breath-status {
+  color: #333333;
+}
+
+/* ── Problem：飲水進度條 ── */
+body.dark-mode .water-widget {
+  background: #1e2e1e;
+}
+body.dark-mode .water-bar-container {
+  background: #2a3a2a;
+  border-color: #3a4a3a;
+}
+body.dark-mode .water-text {
+  color: #ffffff !important;
+}
+body.dark-mode .water-cheer-msg {
+  color: #7deba0;
+}
+
+/* ── Check：健康評估 ── */
+body.dark-mode .check-section {
+  background: #1e2e1e;
+  border-color: #2d4a2d;
+}
+body.dark-mode .check-section h3 {
+  color: #7deba0 !important;
+}
+body.dark-mode input[type="number"] {
+  background: #162616;
+  color: #e0e0e0;
+  border-color: #2d4a2d;
+}
+
+/* ── Quiz：題目卡 ── */
+body.dark-mode .q-card {
+  background: #1e2e1e;
+}
+body.dark-mode #q-text {
+  color: #e0e0e0 !important;
+}
+body.dark-mode .q-options button {
+  background: #162616;
+  color: #e0e0e0;
+  border-color: #2d4a2d;
+}
+body.dark-mode .q-options button:hover {
+  background: #1e3a1e;
+}
+
+/* ── Quiz：電池 ── */
+body.dark-mode .battery-body {
+  background: #111111;
+  border-color: #aaaaaa;
+}
+body.dark-mode .battery-head {
+  background: #aaaaaa;
+}
+body.dark-mode .energy-text {
+  color: #ffffff !important;
+}
+
+/* ── Quiz：結果畫面 ── */
+body.dark-mode #quiz-result {
+  background: #111111 !important;
+  color: #ffffff !important;
+}
+body.dark-mode #quiz-result h2,
+body.dark-mode #quiz-result p {
+  color: #ffffff !important;
+}
+body.dark-mode #quiz-result .reset-btn {
+  background: #2a2a2a;
+  color: #e0e0e0;
+  border-color: #555;
+}
+
+/* ── Footer ── */
+body.dark-mode .site-footer {
+  color: #aaaaaa;
+  border-top-color: rgba(100, 200, 100, 0.15);
+}
+body.dark-mode .footer-brand h4 { color: #7deba0; }
+body.dark-mode .footer-links h5 { color: #cccccc; }
+body.dark-mode .footer-links a  { color: #999999; }
+body.dark-mode .footer-bottom   { color: #666666; }
+/*黑暗模式*/
 /* --- 背景優化版 body --- */
 /* --- 修正版 body：背景加深並固定 --- */
 body {
@@ -973,6 +1268,190 @@ margin: 20px 0;
 .deep-dive-box.reveal-active {
     transform: translateX(0) opacity(1) !important;
 }
+/* --- 飲水進度條專用樣式 --- */
+.water-widget {
+    background: #ffffff;
+    border: 2px solid #eef2f3;
+    border-radius: 20px;
+    padding: 25px;
+    margin: 30px auto 10px;
+    max-width: 440px; /* 符合你之前設定的 480px 以內的行動裝置體感 */
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+}
+
+.water-widget h3 {
+    margin-top: 0;
+    color: #333333;
+    font-size: 18px;
+}
+
+.water-bar-container {
+    width: 100%;
+    height: 35px;
+    background: #eef2f3;
+    border-radius: 25px;
+    position: relative;
+    overflow: hidden;
+    margin: 20px 0;
+    border: 1px solid #ddd;
+}
+
+.water-fill {
+    height: 100%;
+    width: 0%; /* 初始為 0 */
+    background: linear-gradient(90deg, #4fa8ff, #2575fc);
+    transition: width 0.5s ease-in-out;
+}
+
+.water-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bold;
+    color: #333;
+    font-size: 14px;
+    z-index: 2;
+}
+
+.water-btns {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.water-btns button {
+    padding: 10px 14px;
+    border: none;
+    background: #2575fc;
+    color: white;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 13px;
+    transition: transform 0.1s, background 0.2s;
+}
+
+.water-btns button:hover {
+    background: #1a5ecc;
+    transform: scale(1.03);
+}
+
+.water-btns .water-reset-btn {
+    background: #95a5a6;
+}
+.water-btns .water-reset-btn:hover {
+    background: #7f8c8d;
+}
+
+.water-cheer-msg {
+    margin-top: 15px;
+    font-weight: bold;
+    min-height: 20px;
+    color: #27ae60;
+    font-size: 14px;
+}
+/* --- 呼吸計時器專用樣式 --- */
+.breath-widget {
+    background: #ffffff;
+    border: 2px solid #eef2f3;
+    border-radius: 20px;
+    padding: 30px 20px;
+    margin: 30px auto 10px;
+    max-width: 440px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+}
+
+.breath-widget h3 {
+    margin-top: 0;
+    color: #333333;
+    font-size: 18px;
+}
+
+/* 圓圈容器 */
+.breath-circle-container {
+    width: 200px;
+    height: 200px;
+    margin: 30px auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 呼吸發光圓圈 */
+.breath-circle {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(161, 196, 253, 0.6);
+    transition: transform 4s cubic-bezier(0.4, 0, 0.2, 1), background 1s;
+    position: absolute;
+    z-index: 1;
+}
+
+/* 圓圈各階段的動態狀態（由 JS 控制） */
+.breath-circle.inhale {
+    transform: scale(1.8); /* 吸氣：圓圈放大 */
+    background: linear-gradient(135deg, #4fa8ff 0%, #2575fc 100%);
+    box-shadow: 0 0 35px rgba(37, 117, 252, 0.8);
+    transition: transform 4s linear; /* 4秒吸氣 */
+}
+
+.breath-circle.hold {
+    transform: scale(1.8); /* 憋氣：維持放大狀態 */
+    background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+    box-shadow: 0 0 35px rgba(251, 194, 235, 0.8);
+    transition: transform 7s linear; /* 7秒憋氣 */
+}
+
+.breath-circle.exhale {
+    transform: scale(1.0); /* 吐氣：圓圈縮小 */
+    background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+    box-shadow: 0 0 20px rgba(132, 250, 176, 0.6);
+    transition: transform 8s linear; /* 8秒吐氣 */
+}
+
+/* 圓圈中央的狀態提示字 */
+.breath-status-text {
+    position: relative;
+    z-index: 2;
+    font-weight: bold;
+    color: #333333;
+    font-size: 16px;
+    text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+}
+
+.breath-timer-text {
+    font-size: 15px;
+    font-weight: bold;
+    color: #555555;
+    margin-bottom: 15px;
+}
+
+/* 按鈕樣式 */
+.breath-controls button {
+    padding: 12px 24px;
+    border: none;
+    background: #2575fc;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: background 0.2s, transform 0.1s;
+}
+
+.breath-controls button:hover {
+    background: #1a5ecc;
+    transform: scale(1.03);
+}
 /* problem */
 
 /*check*/
@@ -1199,6 +1678,8 @@ margin: 20px 0;
   <div class="waiting-text">Waiting...</div>
 </div>
 <!-- 心電圖結束 -->
+
+<button id="dark-mode-btn" onclick="toggleTheme()" title="切換深色模式">🌙</button>
 
 
 <div class="nav">
@@ -1606,7 +2087,46 @@ margin: 20px 0;
         </div>
     </div>
 </div>
+
+<!-- 專注呼吸計時器工具 -->
+<div class="breath-widget">
+    <h3>🧘 現代人壓力大？跟著圓圈一起一分鐘冥想</h3>
+    <p>採用網頁所學的 <strong style="color: #2575fc;">4-7-8 呼吸法</strong> 釋放壓力</p>
     
+    <!-- 核心動態大圓圈 -->
+    <div class="breath-circle-container">
+        <div id="breath-circle" class="breath-circle"></div>
+        <div id="breath-status" class="breath-status-text">準備好了嗎？</div>
+    </div>
+    
+    <!-- 倒數計時文字 -->
+    <div id="breath-timer" class="breath-timer-text">剩餘時間: 60 秒</div>
+    
+    <!-- 控制按鈕 -->
+    <div class="breath-controls">
+        <button id="breath-start-btn" onclick="startBreathing()">▶️ 開始放鬆練習</button>
+        <button id="breath-stop-btn" onclick="stopBreathing()" style="background: #95a5a6; display: none;">⏹️ 停止</button>
+    </div>
+</div>
+<!-- 每日飲水進度條小工具 -->
+<div class="water-widget">
+    <h3>💧 現代人常見問題：你今天水喝夠了嗎？</h3>
+    <p>每日建議飲水量：<strong style="color: #2575fc;">2000 ml</strong></p>
+    
+    <!-- 水杯進度條外殼 -->
+    <div class="water-bar-container">
+        <div id="water-fill" class="water-fill"></div>
+        <div id="water-text" class="water-text">目前飲水量: 0 / 2000 ml</div>
+    </div>
+    
+    <!-- 互動按鈕 -->
+    <div class="water-btns">
+        <button onclick="addWater(250)">➕ 喝一杯水 (250ml)</button>
+        <button onclick="addWater(500)">🍼 喝一瓶水 (500ml)</button>
+        <button onclick="resetWater()" class="water-reset-btn">🔄 重設進度</button>
+    </div>
+    <p id="water-cheer" class="water-cheer-msg"></p>
+</div>   
     
 
 
@@ -1732,6 +2252,26 @@ margin: 20px 0;
 
 
 <script>
+    //黑暗模式
+// 深色模式切換
+function toggleTheme() {
+    const body = document.body;
+    // 確保這裡是用你 HTML 的 ID
+    const btn = document.getElementById('dark-mode-btn'); 
+    
+    // 切換 dark-mode 類別
+    body.classList.toggle('dark-mode');
+    
+    // 判斷當前是否為暗黑模式，並更改按鈕圖示
+    if (body.classList.contains('dark-mode')) {
+        btn.innerText = '☀️'; // 切換成太陽圖示
+        
+        // 刪除了原本的 alert(...) 提示視窗，切換時不會再跳出框框囉！
+    } else {
+        btn.innerText = '🌙'; // 切換回月亮圖示
+    }
+}
+//黑暗模式
 function showSection(sectionId) {
 let sections = document.querySelectorAll('.content');
 sections.forEach(sec => sec.classList.remove('active'));
@@ -1965,6 +2505,129 @@ document.addEventListener("DOMContentLoaded", function() {
     const targets = document.querySelectorAll('.carousel-wrapper, .deep-dive-box, .faq-section');
     targets.forEach(t => scrollObserver.observe(t));
 });
+// --- 飲水進度條專用邏輯 ---
+let currentWater = 0;
+const targetWater = 2000;
+
+function addWater(amount) {
+    if (currentWater >= targetWater) {
+        document.getElementById('water-cheer').innerText = "🎉 今天的飲水量已經飽和囉！水汪汪的太讚了！";
+        return;
+    }
+
+    currentWater += amount;
+    if (currentWater > targetWater) currentWater = targetWater; // 最高卡在 2000
+
+    updateWaterUI();
+}
+
+function resetWater() {
+    currentWater = 0;
+    document.getElementById('water-cheer').innerText = "";
+    updateWaterUI();
+}
+
+function updateWaterUI() {
+    const percentage = (currentWater / targetWater) * 100;
+    
+    // 更新進度條長度
+    document.getElementById('water-fill').style.width = percentage + '%';
+    
+    // 更新文字
+    document.getElementById('water-text').innerText = `目前飲水量: ${currentWater} / ${targetWater} ml (${Math.round(percentage)}%)`;
+    
+    // 檢查是否達標
+    if (currentWater >= targetWater) {
+        document.getElementById('water-cheer').innerText = "🥳 太棒了！您已達成今日飲水目標！身體水分滿滿！";
+    } else if (currentWater >= 1000 && currentWater < targetWater) {
+        document.getElementById('water-cheer').innerText = "👍 進行到一半了，繼續保持喝水好習慣！";
+    }
+}
+// --- 呼吸計時器專用邏輯 ---
+let breathTimerInterval = null;
+let breathLoopTimeout = null;
+let totalBreathSeconds = 60;
+let isBreathingActive = false;
+
+function startBreathing() {
+    if (isBreathingActive) return;
+    isBreathingActive = true;
+    totalBreathSeconds = 60;
+
+    // 切換按鈕顯示
+    document.getElementById('breath-start-btn').style.display = 'none';
+    document.getElementById('breath-stop-btn').style.display = 'inline-block';
+    document.getElementById('breath-timer').innerText = `剩餘時間: ${totalBreathSeconds} 秒`;
+
+    // 啟動一分鐘總倒數計時
+    breathTimerInterval = setInterval(() => {
+        totalBreathSeconds--;
+        document.getElementById('breath-timer').innerText = `剩餘時間: ${totalBreathSeconds} 秒`;
+        
+        if (totalBreathSeconds <= 0) {
+            endBreathingAnimation("🎉 太棒了！您已成功完成一分鐘深呼吸放鬆！");
+        }
+    }, 1000);
+
+    // 啟動 4-7-8 循環
+    runBreathCycle();
+}
+
+function runBreathCycle() {
+    if (!isBreathingActive) return;
+
+    const circle = document.getElementById('breath-circle');
+    const status = document.getElementById('breath-status');
+
+    // 1. 吸氣階段 (持續 4 秒)
+    circle.className = "breath-circle inhale";
+    status.innerText = "💨 吸氣...";
+
+    // 4 秒後進入憋氣階段
+    breathLoopTimeout = setTimeout(() => {
+        if (!isBreathingActive) return;
+        
+        // 2. 憋氣階段 (持續 7 秒)
+        circle.className = "breath-circle hold";
+        status.innerText = "🛑 憋氣...";
+
+        // 7 秒後進入吐氣階段
+        breathLoopTimeout = setTimeout(() => {
+            if (!isBreathingActive) return;
+            
+            // 3. 吐氣階段 (持續 8 秒)
+            circle.className = "breath-circle exhale";
+            status.innerText = "😮‍💨 吐氣...";
+
+            // 8 秒後重新循環
+            breathLoopTimeout = setTimeout(() => {
+                if (!isBreathingActive) return;
+                runBreathCycle(); // 遞迴呼叫下一輪
+            }, 8000);
+
+        }, 7000);
+
+    }, 4000);
+}
+
+function stopBreathing() {
+    endBreathingAnimation("已停止練習。隨時可以重新開始！");
+}
+
+function endBreathingAnimation(msg) {
+    isBreathingActive = false;
+    clearInterval(breathTimerInterval);
+    clearTimeout(breathLoopTimeout);
+
+    // 還原初始狀態
+    const circle = document.getElementById('breath-circle');
+    circle.className = "breath-circle";
+    document.getElementById('breath-status').innerText = "準備好了嗎？";
+    document.getElementById('breath-timer').innerText = msg;
+
+    document.getElementById('breath-start-btn').style.display = 'inline-block';
+    document.getElementById('breath-stop-btn').style.display = 'none';
+}
 //problem
 
 //check
