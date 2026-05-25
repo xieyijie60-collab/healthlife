@@ -1269,90 +1269,137 @@ margin: 20px 0;
     transform: translateX(0) opacity(1) !important;
 }
 /* --- 飲水進度條專用樣式 --- */
+/* 飲水進度條基礎樣式 */
 .water-widget {
     background: #ffffff;
     border: 2px solid #eef2f3;
     border-radius: 20px;
     padding: 25px;
-    margin: 30px auto 10px;
-    max-width: 440px; /* 符合你之前設定的 480px 以內的行動裝置體感 */
+    max-width: 440px;
+    margin: 20px auto;
     text-align: center;
     box-shadow: 0 8px 24px rgba(0,0,0,0.05);
 }
-
-.water-widget h3 {
-    margin-top: 0;
-    color: #333333;
-    font-size: 18px;
-}
-
 .water-bar-container {
     width: 100%;
-    height: 35px;
-    background: #eef2f3;
-    border-radius: 25px;
-    position: relative;
+    height: 24px;
+    background: #f0f0f0;
+    border-radius: 12px;
     overflow: hidden;
-    margin: 20px 0;
-    border: 1px solid #ddd;
+    margin: 15px 0;
+    border: 1px solid #e0e0e0;
 }
-
-.water-fill {
+.water-progress-bar {
+    width: 0%;
     height: 100%;
-    width: 0%; /* 初始為 0 */
-    background: linear-gradient(90deg, #4fa8ff, #2575fc);
-    transition: width 0.5s ease-in-out;
+    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+    transition: width 0.4s ease-out;
 }
-
 .water-text {
-    position: absolute;
-    width: 100%;
-    text-align: center;
-    top: 50%;
-    transform: translateY(-50%);
+    font-size: 16px;
     font-weight: bold;
-    color: #333;
-    font-size: 14px;
-    z-index: 2;
+    color: #333333;
+    margin-bottom: 15px;
 }
-
-.water-btns {
+.water-highlight {
+    font-size: 20px;
+    color: #2980b9;
+}
+.water-input-group {
     display: flex;
-    gap: 8px;
     justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
     flex-wrap: wrap;
 }
-
-.water-btns button {
-    padding: 10px 14px;
-    border: none;
-    background: #2575fc;
-    color: white;
-    border-radius: 12px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 13px;
-    transition: transform 0.1s, background 0.2s;
-}
-
-.water-btns button:hover {
-    background: #1a5ecc;
-    transform: scale(1.03);
-}
-
-.water-btns .water-reset-btn {
-    background: #95a5a6;
-}
-.water-btns .water-reset-btn:hover {
-    background: #7f8c8d;
-}
-
-.water-cheer-msg {
-    margin-top: 15px;
-    font-weight: bold;
-    min-height: 20px;
-    color: #27ae60;
+.water-input-group input[type="number"] {
+    width: 160px;
+    padding: 10px;
+    border: 2px solid #cbd5e1;
+    border-radius: 10px;
     font-size: 14px;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.2s;
+}
+.water-input-group input[type="number"]:focus {
+    border-color: #4facfe;
+}
+.water-add-btn {
+    padding: 10px 20px;
+    background: #2980b9;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+.water-add-btn:hover {
+    background: #1f618d;
+    transform: scale(1.02);
+}
+.water-clear-btn {
+    padding: 10px 15px;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+.water-clear-btn:hover {
+    background: #c0392b;
+    transform: scale(1.02);
+}
+.water-cheer-msg {
+    font-size: 14px;
+    color: #27ae60;
+    margin-top: 10px;
+    font-weight: 500;
+}
+ 
+/* 深色模式 */
+body.dark-mode .water-widget {
+    background: #1e2e1e !important;
+    border-color: #2d4a2d !important;
+}
+body.dark-mode .water-widget h3 {
+    color: #ffffff !important;
+}
+body.dark-mode .water-bar-container {
+    background: #111111 !important;
+    border-color: #3a4a3a !important;
+}
+body.dark-mode .water-text {
+    color: #ffffff !important;
+}
+body.dark-mode .water-highlight {
+    color: #7deba0 !important;
+}
+body.dark-mode .water-input-group input[type="number"] {
+    background: #162616 !important;
+    color: #ffffff !important;
+    border-color: #2d4a2d !important;
+}
+body.dark-mode .water-input-group input[type="number"]:focus {
+    border-color: #7deba0 !important;
+}
+body.dark-mode .water-add-btn {
+    background: #136529 !important;
+}
+body.dark-mode .water-add-btn:hover {
+    background: #1b8a38 !important;
+}
+body.dark-mode .water-clear-btn {
+    background: #7a1e1e !important;
+}
+body.dark-mode .water-clear-btn:hover {
+    background: #9b2c2c !important;
+}
+body.dark-mode .water-cheer-msg {
+    color: #7deba0 !important;
 }
 /* --- 呼吸計時器專用樣式 --- */
 .breath-widget {
@@ -2108,26 +2155,26 @@ margin: 20px 0;
         <button id="breath-stop-btn" onclick="stopBreathing()" style="background: #95a5a6; display: none;">⏹️ 停止</button>
     </div>
 </div>
-<!-- 每日飲水進度條小工具 -->
 <div class="water-widget">
-    <h3>💧 現代人常見問題：你今天水喝夠了嗎？</h3>
-    <p>每日建議飲水量：<strong style="color: #2575fc;">2000 ml</strong></p>
+    <h3>💧 每日飲水追蹤管理</h3>
+    <p>每日目標：<strong style="color: #2980b9;">2000 cc</strong></p>
     
-    <!-- 水杯進度條外殼 -->
     <div class="water-bar-container">
-        <div id="water-fill" class="water-fill"></div>
-        <div id="water-text" class="water-text">目前飲水量: 0 / 2000 ml</div>
+        <div id="water-progress" class="water-progress-bar"></div>
     </div>
     
-    <!-- 互動按鈕 -->
-    <div class="water-btns">
-        <button onclick="addWater(250)">➕ 喝一杯水 (250ml)</button>
-        <button onclick="addWater(500)">🍼 喝一瓶水 (500ml)</button>
-        <button onclick="resetWater()" class="water-reset-btn">🔄 重設進度</button>
+    <div class="water-text">
+        目前已喝下：<span id="current-water-text" class="water-highlight">0</span> / 2000 cc
     </div>
-    <p id="water-cheer" class="water-cheer-msg"></p>
+ 
+    <div class="water-input-group">
+        <input type="number" id="water-input" placeholder="輸入 cc 數 (例如: 350)" min="1">
+        <button onclick="addCustomWater()" class="water-add-btn">➕ 紀錄飲水</button>
+        <button onclick="resetWaterWidget()" class="water-clear-btn">🔄 歸零</button>
+    </div>
+ 
+    <p id="water-msg" class="water-cheer-msg">今天也要記得多喝水喔！</p>
 </div>   
-    
 
 
   </div>
@@ -2505,43 +2552,50 @@ document.addEventListener("DOMContentLoaded", function() {
     const targets = document.querySelectorAll('.carousel-wrapper, .deep-dive-box, .faq-section');
     targets.forEach(t => scrollObserver.observe(t));
 });
-// --- 飲水進度條專用邏輯 ---
+//飲水進度條
 let currentWater = 0;
 const targetWater = 2000;
-
-function addWater(amount) {
-    if (currentWater >= targetWater) {
-        document.getElementById('water-cheer').innerText = "🎉 今天的飲水量已經飽和囉！水汪汪的太讚了！";
+ 
+function addCustomWater() {
+    const inputField = document.getElementById('water-input');
+    const amount = parseInt(inputField.value);
+ 
+    if (isNaN(amount) || amount <= 0) {
+        alert("請輸入大於 0 的有效飲水 cc 數喔！");
         return;
     }
-
+ 
     currentWater += amount;
-    if (currentWater > targetWater) currentWater = targetWater; // 最高卡在 2000
-
-    updateWaterUI();
-}
-
-function resetWater() {
-    currentWater = 0;
-    document.getElementById('water-cheer').innerText = "";
-    updateWaterUI();
-}
-
-function updateWaterUI() {
-    const percentage = (currentWater / targetWater) * 100;
-    
-    // 更新進度條長度
-    document.getElementById('water-fill').style.width = percentage + '%';
-    
-    // 更新文字
-    document.getElementById('water-text').innerText = `目前飲水量: ${currentWater} / ${targetWater} ml (${Math.round(percentage)}%)`;
-    
-    // 檢查是否達標
+ 
+    let percentage = (currentWater / targetWater) * 100;
+    if (percentage > 100) percentage = 100;
+ 
+    document.getElementById('water-progress').style.width = `${percentage}%`;
+    document.getElementById('current-water-text').innerText = currentWater;
+ 
+    const msgField = document.getElementById('water-msg');
     if (currentWater >= targetWater) {
-        document.getElementById('water-cheer').innerText = "🥳 太棒了！您已達成今日飲水目標！身體水分滿滿！";
-    } else if (currentWater >= 1000 && currentWater < targetWater) {
-        document.getElementById('water-cheer').innerText = "👍 進行到一半了，繼續保持喝水好習慣！";
+        msgField.innerHTML = "🎉 太棒了！您已達成今日飲水目標！身體非常保水！";
+        msgField.style.color = "#7deba0";
+    } else if (currentWater >= 1000) {
+        msgField.innerText = "💪 很好！已經完成一半了，繼續保持！";
+        msgField.style.color = "";
+    } else {
+        msgField.innerText = "🥤 紀錄成功！多喝水能促進新陳代謝喔！";
+        msgField.style.color = "";
     }
+ 
+    inputField.value = "";
+}
+ 
+function resetWaterWidget() {
+    currentWater = 0;
+    document.getElementById('water-progress').style.width = '0%';
+    document.getElementById('current-water-text').innerText = 0;
+    document.getElementById('water-input').value = "";
+    const msgField = document.getElementById('water-msg');
+    msgField.innerText = "今天也要記得多喝水喔！";
+    msgField.style.color = "";
 }
 // --- 呼吸計時器專用邏輯 ---
 let breathTimerInterval = null;
